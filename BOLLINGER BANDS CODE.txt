@@ -1,0 +1,66 @@
+                           ###   Bollinger Bands    ###
+
+# Bollinger Bands were developed by technical trader John Bollinger.
+
+# Designed to give investors a higher probability of identifying when an asset is oversold or overbought
+
+# Quantmod stands for quantitative financial modelling framework
+
+It has two main functions
+
+1. download data
+2. charting
+
+#  Installing Packages
+install.packages("quantmod")
+library(quantmod)
+
+#  Downloading Data
+getSymbols("AAPL")
+head(AAPL, n = 3)
+
+# Quantmod draw nice charts of following common types like {line,bars and candlesticks}
+# The line chart displays closing price of the stock
+
+--------
+chartSeries(AAPL,
+           type="line",
+           subset='2023',
+           theme=chartTheme('white'))
+---------
+
+# The bar chart displays open, high, low, close and volume closing price of the stock
+# The top of the the bar is high and the bottom of the bar is low
+# The left stick is open and the right stick is close
+#If the close is higher than open, the bar is green color. Otherwise, it is in orange color
+ 
+-------- 
+chartSeries(AAPL,
+            type="bar",
+            subset='2023',
+            theme=chartTheme('white'))
+--------
+  
+# A candle stick chart is very similar to a bar chart
+# It also displays open,high, close and volume closing price of the stock
+  
+---------
+chartSeries(AAPL,
+            type="candle",
+            subset='2023',
+            up.col='white',
+            down.col='black',
+            theme=chartTheme('white'))
+---------
+
+##  BOLLINGER BAND
+
+# A channel (or band) is an area that surrounds a trend within which price movement
+# does not indicate formation of a new trend
+  
+-------
+chartSeries(AAPL,
+            subset='2023',
+            theme=chartTheme('white'))
+addBBands(n=20,sd=2)                    
+------
